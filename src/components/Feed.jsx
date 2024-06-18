@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react';
-
+import { FaHeart } from "react-icons/fa";
 
 
 const Feed = ({type}) => {
 
     const [movieData, setMovieData] = useState([])
-    
     const [title, setTitle] = useState("");
 
+      const heartHandler = () => {
+        
+      }
+      
 
     const options = {
         method: 'GET',
@@ -77,12 +80,10 @@ const Feed = ({type}) => {
 
       return 'red';
       }
-    
-
-            
             return(
               <div key={movie.id}> 
-                <li><img className='w-64 h-auto' src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
+              <button onClick={heartHandler}><FaHeart className='text-red-500 h-11 w-auto relative top-10 z-10'/></button>
+                <li><img className='w-64 h-auto hover:opacity-80 cursor-pointer' src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
                 
                 <div className="radial-progress text-2xl text-black w-20 h-20 relative bottom-10 bg-white" style={{
                   "--value":`${percentage}`,
