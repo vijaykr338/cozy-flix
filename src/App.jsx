@@ -4,7 +4,23 @@ import MainPage from './components/MainPage'
 import AnimatedCursor from 'react-animated-cursor'
 import WatchList from './components/WatchList'
 import FullPage from './components/FullPage'
+import MoreDetail from './components/MoreDetail'
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+
 function App(){
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <StarterPage/>,
+    },
+  ]);
+
+
   return (
     <div>
       {/* <AnimatedCursor 
@@ -12,7 +28,8 @@ function App(){
         outerSize={20}
         color='255, 255, 255'
       /> */}
-    <FullPage/>
+      <RouterProvider router={router}/>
+      <StarterPage></StarterPage>
       
     </div>
   )

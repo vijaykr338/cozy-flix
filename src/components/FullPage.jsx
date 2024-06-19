@@ -23,27 +23,17 @@ const FullPage = ({id}) => {
       const response = await fetch('https://api.themoviedb.org/3/movie/573435', options)
       const data = await response.json();
       setMovieDetail(data)
+      console.log(data)
     }catch(err){
       console.log("Error Happened", err)
     }
   }
 
-  const getCreditDetail = async() =>{
-    try{
-      const response = await fetch(`https://api.themoviedb.org/3/movie/573435/credits`, options)
-      const data = await response.json();
-      console.log(data)
-      setCredits(data)
-    }
-    catch(error){
-      console.log(error, "Error happened")
-    }
-  }
 
   
 useEffect(()=>{
   getMovieDetail()
-  getCreditDetail()
+ 
 },[])
 
   const dateString = movieDetail.release_date
@@ -55,9 +45,14 @@ useEffect(()=>{
 
   const hours = Math.floor(movieDetail.runtime / 60);
   const minutes = movieDetail.runtime % 60;
+  
+
+const backdropUrl = `https://image.tmdb.org/t/p/w500${movieDetail.belongs_to_collection?.backdrop_path}`;
 
 
   return (
+    <div>
+      
     <div className='mx-10 my-9 flex' >
       <img className='' src={`https://image.tmdb.org/t/p/w500${movieDetail.belongs_to_collection?.poster_path}`} alt="" />
       <div className='mx-14'>
@@ -90,6 +85,7 @@ useEffect(()=>{
           </div> 
       </div>
          
+    </div>
     </div>
   )
 }

@@ -18,7 +18,7 @@ const SignUp = () => {
         <div className='flex h-screen' >
              <div className='relative'>
             <div className='absolute inset-0 bg-gradient-to-l from-black to-transparent'></div>
-            <img src={torture} alt="torture-fremd" className='h-full w-full object-cover' />
+            <img src={door} alt="torture-fremd" className='h-full w-full object-cover' />
         </div>
             <form onSubmit={handleSubmit} className='text-white flex justify-center items-center flex-col w-1/3'>
                 <label className='my-4 text-5xl relative bottom-20 font-playwright'>Sign Up</label>
