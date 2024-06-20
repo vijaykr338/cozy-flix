@@ -1,17 +1,19 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const NavBar = () => {
   return (
     <div>
       <div className="navbar bg-black bg-opacity-50">
   <div className="flex-1">
-    <a className="btn btn-ghost text-xl">Movie-Mania</a>
+
+    <Link to="/" className="btn btn-ghost text-xl">Movie-Mania</Link>
   </div>
   <div className="flex-none gap-2">
     <div className="space-x-3">
         
      <button className='btn '>TV Shows</button>
-     <button className='btn'>Watchlist</button>
+    <Link to="/watchlist"><button className='btn'>Watchlist</button></Link> 
     </div>
     <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">

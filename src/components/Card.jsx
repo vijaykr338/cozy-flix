@@ -2,75 +2,70 @@ import React from 'react'
 import dummy from '../assets/dummy.jpg'
 import { useEffect, useState } from 'react'
 import { FaStar } from "react-icons/fa6";
-
-const Card = ({ id }) => {
-
-
-    const [creditData, setCreditData] = useState([])
-
-    const options = {
-        method: 'GET',
-        headers: {
-            accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNjc1NmNlMTcwOWJlZjg3NDkyMjMyMzRkODJlYmQ0MiIsInN1YiI6IjY2NmVjYzAzYjE4NWYyMTFjYjgzMGI1NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.V_Ug-x32K-ZjApV6oyaFisuCJPXqInnEVgDpHUbh1dc'
-        }
-    };
+import { Link } from 'react-router-dom';
+import { GiCrossMark } from "react-icons/gi";
+import { ImCross } from "react-icons/im";
+import { useContext } from 'react';
+import { WatchListContext } from './context/WatchListContext';
 
 
-    const fetchCredits = async () => {
-        try{
-            const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits`, options)
-        const data = await response.json();
-        console.log(data)
-        setCreditData(data.crew.filter((movie)=>(movie.job === "Director")));
-        console.log(creditData)
-        } catch(err){
-            console.log(err, "Some Error Occured")
-        }
-        
-    }
+const Card = ({ movieData }) => {
+    
+    const [watchList, setWatchList] = useContext(WatchListContext)
 
-    useEffect(() => {
-        fetchCredits()
-    }, [])
+    const removeFromWatchlist = (id) => {
+        setWatchList(prevWatchList => prevWatchList.filter(item => item !== id));
+        console.log(watchList)
+      };
+      console.log(watchList)
+    
 
+    const dateString = movieData.release_date
+    const date = new Date(dateString)
+    const formattedDate = `${date.toLocaleDateString('default', { month: 'long' })} ${date.getDate()}, ${date.getFullYear()}`
+
+    const year = new Date(dateString).getFullYear();
+    const rating = movieData.vote_average?.toFixed(1);
+
+    const hours = Math.floor(movieData.runtime / 60);
+    const minutes = movieData.runtime % 60;
+
+    
+    
 
     return (
-        <div className='border-2 mx-52 rounded-2xl my-8'>
-            {creditData.map((credit) => {
-
-                return (
-                <li key={credit.id} className='list-none'>
+        <div className='border-2 mx-64 rounded-2xl my-8'>
+           
             <div className='flex'>
-                <img src={dummy} alt="dummmy" className='w-36 mx-8 my-8' />
+
+                <img src={`https://image.tmdb.org/t/p/w500${movieData.poster_path}`} alt="baka" className='h-64 mx-8 my-8' />
 
                 <div className='my-16'>
-                    <h1 className='text-xl  font-bold'>1. Afflicted</h1>
+
+                    <div className='flex justify-between'>
+                    <Link to={`/more-detail/${movieData.id}`}>
+                        <h1 className='text-4xl font-bold hover:underline'>{movieData.title}</h1>
+                    </Link> 
+                    <ImCross onClick={()=>removeFromWatchlist(movieData.id)} className='cursor-pointer relative mx-16 h-12 w-12'/>
+</div>
                     <div className='flex space-x-3 my-4'>
-                        <h1>2013</h1>
-                        <h1>1h 23m</h1>
-                        <h1>R</h1>
+                        <h1>{formattedDate}</h1>
+                        <h1>{hours}h {minutes}m</h1>
+
                     </div>
                     <div className='flex'>
-                        < FaStar className='text-yellow-300' />
-                        <p className=''>6.44</p>
+                        < FaStar className='text-yellow-300 my-1' />
+                        <p className='mx-2 text-white '>{movieData.vote_average}</p>
                     </div>
+
+                    <p className='my-3 px-3'>{movieData.overview}</p>
+
+
                 </div>
             </div>
 
-            <p className='my-6 mx-8 text-2xl'>Two best friends see their trip of a lifetime take a dark
-                turn when one of them is struck by a mysterious affliction.
-                Now, in a foreign land, they race to uncover the
-                source before it consumes him completely.</p>
 
-            <div className='flex mx-8 space-x-2 my-4'>
-                <h1 className='font-bold'>Director</h1>
-                <h2>{credit.name}</h2>
-            </div>
-            </li>
-            )
-            })}
-            
+
 
         </div>
     )

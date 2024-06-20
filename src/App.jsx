@@ -9,30 +9,41 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-
+import { WatchListProvider } from './components/context/WatchListContext'
 
 function App(){
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <StarterPage/>,
+      element: <MainPage/>,
     },
+    {
+      path: "/more-detail/:id",
+      element: <MoreDetail/>
+    },
+    {
+      path: "/watchlist",
+      element: <WatchList/>
+    }
+    
   ]);
 
 
   return (
-    <div>
-      {/* <AnimatedCursor 
+    <WatchListProvider>
+      
+      <RouterProvider router={router}/>
+    
+      
+    </WatchListProvider>
+  )
+}
+
+{/* <AnimatedCursor 
         innerSize={10}
         outerSize={20}
         color='255, 255, 255'
       /> */}
-      <RouterProvider router={router}/>
-      <StarterPage></StarterPage>
-      
-    </div>
-  )
-}
 
 export default App

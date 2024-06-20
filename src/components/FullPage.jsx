@@ -4,37 +4,13 @@ import GenreBox from './GenreBox'
 import Rating from './Rating'
 import hero2 from '../assets/hero2.jpg'
 
-const FullPage = ({id}) => {
+
+const FullPage = ({id, movieDetail}) => {
+
+
+
   const [credits, setCredits] = useState([])
-  const [movieDetail, setMovieDetail] = useState([])
-  
-  
-    const options = {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNjc1NmNlMTcwOWJlZjg3NDkyMjMyMzRkODJlYmQ0MiIsInN1YiI6IjY2NmVjYzAzYjE4NWYyMTFjYjgzMGI1NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.V_Ug-x32K-ZjApV6oyaFisuCJPXqInnEVgDpHUbh1dc'
-      }
-    };
-  
-
-  const getMovieDetail = async () => {
-    try{
-      const response = await fetch('https://api.themoviedb.org/3/movie/573435', options)
-      const data = await response.json();
-      setMovieDetail(data)
-      console.log(data)
-    }catch(err){
-      console.log("Error Happened", err)
-    }
-  }
-
-
-  
-useEffect(()=>{
-  getMovieDetail()
  
-},[])
 
   const dateString = movieDetail.release_date
   const date = new Date(dateString)
@@ -48,19 +24,19 @@ useEffect(()=>{
   
 
 const backdropUrl = `https://image.tmdb.org/t/p/w500${movieDetail.belongs_to_collection?.backdrop_path}`;
-
+console.log(`https://image.tmdb.org/t/p/w500${movieDetail?.poster_path}`)
 
   return (
     <div>
       
     <div className='mx-10 my-9 flex' >
-      <img className='' src={`https://image.tmdb.org/t/p/w500${movieDetail.belongs_to_collection?.poster_path}`} alt="" />
+      <img className='' src={`https://image.tmdb.org/t/p/w500${movieDetail?.poster_path}`} alt="" />
       <div className='mx-14'>
         <h1 className='text-5xl my-3 '>{movieDetail.original_title}({year})</h1>
         <div className="genres flex space-x-3">
           {movieDetail.genres?.map((movie)=>{
             return(
-            <GenreBox genre={movie.name}/>
+            <GenreBox key={movie.id} genre={movie.name}/>
           )
             
           })}

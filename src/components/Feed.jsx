@@ -2,16 +2,24 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { FaHeart } from "react-icons/fa";
 import { CiBookmarkPlus } from "react-icons/ci";
+import {Link} from "react-router-dom"
+import { useContext } from 'react';
+import { WatchListContext } from './context/WatchListContext';
 
 
 const Feed = ({type, id}) => {
 
     const [movieData, setMovieData] = useState([])
     const [title, setTitle] = useState("");
+    const [watchList, setWatchList] = useContext(WatchListContext)
 
-      const heartHandler = () => {
-        
-      }
+    const addToWatchList = (id) => {
+      // this is how you append to an array
+      setWatchList((old)=>[...old, id]);
+    }
+    
+
+  
       
 
     const options = {
@@ -53,16 +61,22 @@ const Feed = ({type, id}) => {
             setMovieData(movie)
          
           
-            
+           
         } catch(error){
         console.log("Some Error Occurred", error);
     }
+            window.scrollTo(0, 0);
     }
 
     useEffect(()=>{
         getMovieDetails();
-    }, [])
+
+    }, [id])
     
+    useEffect(()=>{
+      console.log(watchList)
+    })
+
 
   return (
     <div className='my-10 mx-10 font-space'>
@@ -86,9 +100,15 @@ const Feed = ({type, id}) => {
       }
             return(
               <div className='w-72' key={movie.id}> 
-              <button onClick={heartHandler}><FaHeart className='text-red-500 h-11 w-auto relative top-12 z-10'/></button>
-                <li className=''><img className='w-64 h-auto hover:opacity-80 cursor-pointer' src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
-                
+              <button onClick={()=>addToWatchList(movie.id)}>
+                <FaHeart className='text-red-500 h-11 w-auto relative top-12 z-10 hover:h-15'/></button>
+                <li className=''>
+                  
+                  <Link to={`/more-detail/${movie.id}`}>
+                 
+                  <img className='w-64 h-auto hover:opacity-80 cursor-pointer' src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
+                  
+                </Link>
                 <div className="radial-progress text-2xl text-black w-20 h-20 relative bottom-10 bg-white" style={{
                   "--value":`${percentage}`,
                   "color": getRatingColor(rating)

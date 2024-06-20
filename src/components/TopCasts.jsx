@@ -17,7 +17,7 @@ const TopCasts = ({ id }) => {
 
     const getCreditDetail = async () => {
         try {
-            const response = await fetch(`https://api.themoviedb.org/3/movie/573435/credits`, options)
+            const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits`, options)
             const data = await response.json();
             console.log(data.cast)
             setCredits(data.cast)
@@ -29,7 +29,7 @@ const TopCasts = ({ id }) => {
 
     useEffect(() => {
         getCreditDetail()
-    }, [])
+    }, [id])
 
 
     return (
@@ -39,7 +39,7 @@ const TopCasts = ({ id }) => {
                 {
                     credits.slice(0, 7).map((cast) => {
                         return (
-                            <div>
+                            <div key={cast.id}>
 
                                 <div className='w-48 h-48 overflow-hidden'>
                                     <img className='object-cover w-full h-full rounded-full' src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`} />
