@@ -10,7 +10,7 @@ const MainPage = () => {
   const [query, setQuery] = useState("")
   console.log(query)
   return (
-    <div>
+    <div className='overflow-hidden'>
     
     <Hero query={query} setQuery={setQuery}></Hero>
     <div className='flex flex-col space-y-4 mt-[-150px]'>

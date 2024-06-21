@@ -42,13 +42,12 @@ useEffect(() => {
     return (
         <>
         {userLoggedIn && (<Navigate to={'/main'} replace={true} />)}    
-        <div className='flex h-screen' >
-            
-             <div className='relative'>
-            <div className='absolute inset-0 bg-gradient-to-l from-black to-transparent'></div>
+        <div className='xl:flex h-screen' >
+             <div className='relative '>
+            <div className='absolute inset-0 xl:bg-gradient-to-l bg-gradient-to-t from-black to-transparent'></div>
             <img src={torture} alt="torture-fremd" className='h-full w-full object-cover' />
         </div>
-            <form onSubmit={onSubmit} className='text-white flex justify-center items-center flex-col w-1/3'>
+            <form onSubmit={onSubmit} className='text-white flex justify-center items-center flex-col xl:w-1/3'>
                 <label className='my-4 text-5xl relative bottom-20 font-playwright'>Sign Up</label>
                 <label className="input input-bordered flex items-center gap-2">
 

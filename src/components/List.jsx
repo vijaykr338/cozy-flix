@@ -46,7 +46,7 @@ const List = () => {
   console.log(movieDetail)
 
   return (
-    <div>
+    <div className=''>
 
       {
         movieDetail.map((movie) => {

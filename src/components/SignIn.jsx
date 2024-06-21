@@ -40,13 +40,14 @@ const SignIn = () => {
     
 
   return (
-    <div className='flex h-screen' >
+    <>
         {userLoggedIn && (<Navigate to={'/main'} replace={true}/>)}
+    <div className='xl:flex h-screen' >
              <div className='relative'>
-            <div className='absolute inset-0 bg-gradient-to-l from-black to-transparent'></div>
+            <div className='absolute inset-0 xl:bg-gradient-to-l bg-gradient-to-t from-black to-transparent'></div>
             <img src={hero3} alt="torture-fremd" className='h-full w-full object-cover' />
         </div>
-            <form onSubmit={handleSubmit} className='text-white flex justify-center items-center flex-col mx-4  w-1/3'>
+            <form onSubmit={handleSubmit} className='text-white flex justify-center items-center flex-col xl:w-1/3'>
                 <label className='my-4 text-5xl relative bottom-20 font-playwright'>Sign in</label>
                 <label className="input input-bordered flex items-center gap-2">
 
@@ -69,6 +70,7 @@ const SignIn = () => {
             </form>
             
         </div>
+        </>
   )
 }
 

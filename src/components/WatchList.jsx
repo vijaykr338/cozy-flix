@@ -10,10 +10,9 @@ const WatchList = () => {
 
 
   return (
-    <div>
-      
+    <div className='overflow-hidden'>
       <WatchListHero></WatchListHero>
-      <WatchListActions/>
+   
       <List/>
     </div>
   )

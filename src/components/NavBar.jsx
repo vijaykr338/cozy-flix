@@ -13,7 +13,7 @@ const NavBar = () => {
       <div className="navbar bg-black bg-opacity-50">
   <div className="flex-1">
 
-    <Link to="/" className="btn btn-ghost text-xl">Movie-Mania</Link>
+    <Link to="/" className="btn btn-ghost xl:text-xl">Movie-Mania</Link>
   </div>
   <div className="flex-none gap-2">
     <div className="space-x-3">

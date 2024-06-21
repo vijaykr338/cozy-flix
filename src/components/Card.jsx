@@ -34,34 +34,39 @@ const Card = ({ movieData }) => {
     
 
     return (
-        <div className='border-2 mx-64 rounded-2xl my-8'>
+        <div className='border-2 xl:mx-64 xl:rounded-2xl rounded-lg mx-5 xl:my-8 my-4'>
            
             <div className='flex'>
 
-                <img src={`https://image.tmdb.org/t/p/w500${movieData.poster_path}`} alt="baka" className='h-64 mx-8 my-8' />
+                <img src={`https://image.tmdb.org/t/p/w500${movieData.poster_path}`} 
+                 alt="baka"
+                 className='xl:h-64 h-48 mx-4 my-4 xl:mx-8 xl:my-8'
+                  />
 
-                <div className='my-16'>
+                <div className='xl:my-16 my-8'>
 
                     <div className='flex justify-between'>
                     <Link to={`/more-detail/${movieData.id}`}>
-                        <h1 className='text-4xl font-bold hover:underline'>{movieData.title}</h1>
+                        <h1 className='xl:text-4xl text-xl font-bold hover:underline'>{movieData.title}</h1>
                     </Link> 
-                    <ImCross onClick={()=>removeFromWatchlist(movieData.id)} className='cursor-pointer relative mx-16 h-12 w-12'/>
+                    <ImCross onClick={()=>removeFromWatchlist(movieData.id)} 
+                    className='cursor-pointer relative xl:mx-16 xl:h-12 xl:w-12 mx-8 h-5 w-5'
+                    />
 </div>
-                    <div className='flex space-x-3 my-4'>
+                    <div className='flex text-sm space-x-3 my-4'>
                         <h1>{formattedDate}</h1>
                         <h1>{hours}h {minutes}m</h1>
 
                     </div>
-                    <div className='flex'>
+                    <div className='flex text-sm'>
                         < FaStar className='text-yellow-300 my-1' />
                         <p className='mx-2 text-white '>{movieData.vote_average}</p>
                     </div>
 
-                    <p className='my-3 px-3'>{movieData.overview}</p>
-
+                    <p className='my-3 px-3 text-sm xl:text-lg'>{movieData.overview}</p>
 
                 </div>
+                
             </div>
 
 
