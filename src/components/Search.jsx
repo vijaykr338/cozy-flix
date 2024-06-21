@@ -7,27 +7,15 @@ import { useContext } from 'react';
 import { WatchListContext } from './context/WatchListContext';
 
 
-const Feed = ({ type, id, query }) => {
+const Search = ({query}) => {
 
   const [movieData, setMovieData] = useState([])
-  const [title, setTitle] = useState("");
   const [watchList, setWatchList] = useContext(WatchListContext)
-  const [searching, setSearching] = useState(false)
 
   const addToWatchList = (id) => {
     // this is how you append to an array
     setWatchList((old) => [...old, id]);
   }
-
-    useEffect(()=>{
-       if(query !== "" ){
-      setSearching(true);
-    }
-    },[query])
-   
-    
-
-
 
   const options = {
     method: 'GET',
@@ -37,55 +25,29 @@ const Feed = ({ type, id, query }) => {
     }
   };
 
-  const getMovieDetails = async () => {
-    try {
-      let response;
+  
 
-      if (type === "top-rated") {
-        setTitle("Top-Rated")
-        response = await fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US', options)
-      }
-      else if (type === "upcoming") {
-        setTitle("Upcoming")
-        response = await fetch('https://api.themoviedb.org/3/movie/upcoming?language=en-US', options)
-      }
-      else if (type === "trending") {
-        setTitle("Trending")
-        response = await fetch('https://api.themoviedb.org/3/trending/movie/week?api_key=&language=en-US', options)
-      }
-      else if (type === "similar") {
-        setTitle("Simiar Movies")
-        response = await fetch(`https://api.themoviedb.org/3/movie/${id}/similar?language=en-US&page=1`, options)
-      }
-      const data = await response.json();
-
-      const baseUrl = "https://image.tmdb.org/t/p/w500"
-
-      const movie = data.results.slice(0, 8);
-
-      setMovieData(movie)
-
-
-
-    } catch (error) {
-      console.log("Some Error Occurred", error);
+  const getSearchDetails = async () =>{
+    try{
+      const response  = await fetch(`https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1`, options)
+      const data = await response.json()
+      console.log(data)
+      const results = data.results.slice(0, 8);
+      console.log(results)
+      setMovieData(results)
+    } catch(error) {
+      console.log(error, "Error happened")
     }
-    window.scrollTo(0, 0);
   }
 
-  useEffect(() => {
-    getMovieDetails();
-
-  }, [id])
-
-
+  useEffect(()=>{
+    getSearchDetails()
+  }, [query])
 
 
   return (
-    <div>
-      {
-        !searching && <div className='my-10 mx-10 font-space'>
-          <h1 className='text-white text-3xl my-6'>{title}</h1>
+    <div className='my-10 mx-10 font-space'>
+      <h1 className='text-white text-3xl my-6'>The Search Results -</h1>
           <div className='list-none flex flex-wrap justify-center space-x-9 '>
             {
               movieData.map((movie) => {
@@ -131,9 +93,8 @@ const Feed = ({ type, id, query }) => {
             }
           </div>
         </div>
-      }
-    </div>
+    
   )
 }
 
-export default Feed
+export default Search

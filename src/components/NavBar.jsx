@@ -1,7 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from './context/authContext'
+import { doSignOut } from '../../firebase/auth'
 
 const NavBar = () => {
+
+  const navigate = useNavigate()
+  const {useLoggedIn } = useAuth()
+
   return (
     <div>
       <div className="navbar bg-black bg-opacity-50">
@@ -12,7 +18,7 @@ const NavBar = () => {
   <div className="flex-none gap-2">
     <div className="space-x-3">
         
-     <button className='btn '>TV Shows</button>
+     
     <Link to="/watchlist"><button className='btn'>Watchlist</button></Link> 
     </div>
     <div className="dropdown dropdown-end">
@@ -25,11 +31,12 @@ const NavBar = () => {
         <li>
           <a className="justify-between">
             Profile
-            <span className="badge">New</span>
           </a>
         </li>
-        <li><a>Settings</a></li>
-        <li><a>Logout</a></li>
+        
+        <li className='text-center cursor-pointer' onClick={()=>{
+          doSignOut().then(()=> {navigate('/login')})
+        }}>Log Out</li>
       </ul>
     </div>
   </div>

@@ -1,11 +1,19 @@
 import React from 'react'
 import SignUp from './SignUp'
+import SignIn from './SignIn'
+import { AuthProvider } from './context/authContext'
+import NavBar from './NavBar'
+
 const StarterPage = () => {
+
   return (
-    <div>
-      
+    <AuthProvider>
+     
       <SignUp></SignUp>
-    </div>
+      
+      
+      
+    </AuthProvider>
   )
 }
 

@@ -6,38 +6,31 @@ import WatchList from './components/WatchList'
 import FullPage from './components/FullPage'
 import MoreDetail from './components/MoreDetail'
 import {
-  createBrowserRouter,
-  RouterProvider,
+  BrowserRouter as Router,
+  Routes,
+  Route
 } from "react-router-dom";
 import { WatchListProvider } from './components/context/WatchListContext'
+import { AuthProvider } from './components/context/authContext'
+import SignIn from './components/SignIn'
 
 function App(){
-
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <MainPage/>,
-    },
-    {
-      path: "/more-detail/:id",
-      element: <MoreDetail/>
-    },
-    {
-      path: "/watchlist",
-      element: <WatchList/>
-    }
-    
-  ]);
-
-
   return (
+
     <WatchListProvider>
-      
-      <RouterProvider router={router}/>
-    
-      
+      <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<StarterPage/>} />
+          <Route path="/login" element={<SignIn/>} />
+          <Route path="/main" element={<MainPage/>} />
+          <Route path="/more-detail/:id" element={<MoreDetail/>} />
+          <Route path="/watchlist" element={<WatchList/>} />
+        </Routes>
+      </Router>
+      </AuthProvider>
     </WatchListProvider>
-  )
+  );
 }
 
 {/* <AnimatedCursor 
