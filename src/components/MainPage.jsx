@@ -15,8 +15,8 @@ const MainPage = () => {
     <Hero query={query} setQuery={setQuery}></Hero>
     <div className='flex flex-col space-y-4 mt-[-150px]'>
     <Feed query={query} type="trending"></Feed>
-    <Feed type="upcoming"></Feed>
-    <Feed type="top-rated" ></Feed></div>
+    <Feed query={query} type="upcoming"></Feed>
+    <Feed query={query} type="top-rated" ></Feed></div>
     <Search query={query}></Search>
     <Footer/>
     </div>

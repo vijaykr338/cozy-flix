@@ -20,11 +20,16 @@ const SignUp = () => {
 
      const { userLoggedIn } = useAuth()
 
-    const onSubmit = async (e) => {
+     const onSubmit = async (e) => {
         e.preventDefault()
         if(!isRegistering) {
             setIsRegistering(true)
-            await doCreateUserWithEmailAndPassword(email, password)
+            try {
+                await doCreateUserWithEmailAndPassword(email, password)
+            } catch (error) {
+                console.error("Error creating user: ", error);
+                setIsRegistering(false)
+            }
         }
     }
     
