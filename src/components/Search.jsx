@@ -11,11 +11,21 @@ const Search = ({ query }) => {
 
   const [movieData, setMovieData] = useState([])
   const [watchList, setWatchList] = useContext(WatchListContext)
+  const [searching, setSearching] = useState(false)
 
   const addToWatchList = (id) => {
     // this is how you append to an array
     setWatchList((old) => [...old, id]);
   }
+
+  useEffect(()=>{
+    if(query !== ""){
+      setSearching(true)
+    }
+    else{
+      setSearching(false)
+    }
+  },[query])
 
   const options = {
     method: 'GET',
@@ -47,7 +57,10 @@ const Search = ({ query }) => {
 
   return (
     <div className='my-10 mx-5 font-space'>
-      <h1 className='text-white text-3xl my-6'>The Search Results -</h1>
+      {
+        searching && <h1 className='text-white text-3xl my-6'>The Search Results -</h1>
+      }
+      
       <div className='list-none flex flex-wrap justify-center gap-x-9 xl:gap-x-24'>
         {
           movieData.map((movie) => {

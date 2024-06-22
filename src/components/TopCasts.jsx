@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 
+
 const TopCasts = ({ id }) => {
 
     const [credits, setCredits] = useState([])
@@ -33,31 +34,24 @@ const TopCasts = ({ id }) => {
 
 
     return (
-        <div className='flex items-center flex-col'>
-            <h1 className='text-3xl  my-4'>Top Casts</h1>
-            <div className='flex space-x-12 mx-8'>
-                {
-                    credits.slice(0, 7).map((cast) => {
-                        return (
-                            <div key={cast.id}>
-
-                                <div className='w-48 h-48 overflow-hidden'>
-                                    <img className='object-cover w-full h-full rounded-full' src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`} />
-                                </div>
-
-
-                            <div className='my-3'>
-                            <h1 className='font-bold text-center'>{cast.name}</h1>
-                            <h1 className='text-center'>{cast.character}</h1>
-                            </div>
-
-                            </div>
-
-                        )
-                    })
-                }
-            </div>
+         <div className='flex items-center flex-col'>
+        <h1 className='text-3xl my-4'>Top Casts</h1>
+        <div className='flex flex-wrap justify-center mx-8 gap-4'> {/* Adjusted for flex-wrap and spacing */}
+            {
+                credits.slice(0, 7).map((cast) => (
+                    <div key={cast.id} className=' flex flex-col items-center'> {/* Adjusted width and added padding */}
+                        <div className='xl:w-48 xl:h-48 w-20 h-20 overflow-hidden'>
+                            <img className='object-cover w-full h-full rounded-full' src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`} />
+                        </div>
+                        <div className='my-3'>
+                            <h1 className='font-bold text-xs text-center'>{cast.name}</h1>
+                            <h1 className='text-center text-wrap text-xs'>{cast.character}</h1>
+                        </div>
+                    </div>
+                ))
+            }
         </div>
+    </div>
     )
 }
 

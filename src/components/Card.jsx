@@ -45,13 +45,13 @@ const Card = ({ movieData }) => {
 
                 <div className='xl:my-16 my-8'>
 
-                    <div className='flex justify-between'>
-                    <Link to={`/more-detail/${movieData.id}`}>
-                        <h1 className='xl:text-4xl text-xl font-bold hover:underline'>{movieData.title}</h1>
-                    </Link> 
-                    <ImCross onClick={()=>removeFromWatchlist(movieData.id)} 
-                    className='cursor-pointer relative xl:mx-16 xl:h-12 xl:w-12 mx-8 h-5 w-5'
-                    />
+                <div className='flex justify-between items-center w-full'>
+    <Link to={`/more-detail/${movieData.id}`} className='flex-1'>
+        <h1 className='xl:text-4xl text-xl font-bold hover:underline truncate'>{movieData.title}</h1>
+    </Link>
+    <ImCross onClick={() => removeFromWatchlist(movieData.id)} 
+        className='flex-shrink-0 cursor-pointer relative xl:mx-34 xl:h-12 xl:w-12 mx-8 h-5 w-5'
+    />
 </div>
                     <div className='flex text-sm space-x-3 my-4'>
                         <h1>{formattedDate}</h1>
@@ -63,14 +63,14 @@ const Card = ({ movieData }) => {
                         <p className='mx-2 text-white '>{movieData.vote_average}</p>
                     </div>
 
-                    <p className='my-3 px-3 text-sm xl:text-lg'>{movieData.overview}</p>
+                   
 
                 </div>
                 
             </div>
 
 
-
+ <p className='my-3 px-3 text-sm xl:text-lg overflow-clip'>{movieData.overview}</p>
 
         </div>
     )

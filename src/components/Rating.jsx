@@ -15,12 +15,13 @@ const Rating = ({rating}) => {
 
   return (
     
-      
-      <div className="radial-progress text-2xl text-white  w-15 h-15 bg-opacity-10 bg-white" style={{
-                  "--value":`${percentage}`,
-                  "color": getRatingColor(rating)
-                
-                  }} role="progressbar">{rating}</div>
+    <div className="radial-progress xl:text-xl text-black text-xs mx-4 my-2 bg-white" style={{
+      "--value": `${percentage}`,
+      "color": getRatingColor(rating),
+      "--thickness": "4px",
+      "--size": "3rem"
+
+    }} role="progressbar">{rating}</div>
     
   )
 }

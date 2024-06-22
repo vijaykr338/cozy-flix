@@ -62,7 +62,6 @@ const Feed = ({ type, id, query }) => {
       }
       const data = await response.json();
 
-      const baseUrl = "https://image.tmdb.org/t/p/w500"
 
       const movie = data.results.slice(0, 8);
 

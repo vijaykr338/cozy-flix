@@ -9,24 +9,23 @@ const NavBar = () => {
   const {useLoggedIn } = useAuth()
 
   return (
-    <div>
+    <div className='font-playwright'>
       <div className="navbar bg-black bg-opacity-50">
   <div className="flex-1">
 
-    <Link to="/" className="btn btn-ghost xl:text-xl">Movie-Mania</Link>
+    <Link to="/" className="btn btn-ghost xl:text-xl">Cozy Flix</Link>
   </div>
   <div className="flex-none gap-2">
     <div className="space-x-3">
         
      
     <Link to="/watchlist"><button className='btn'>Watchlist</button></Link> 
+    <Link to="/watchlist"><button className='btn' onClick={()=>{
+          doSignOut().then(()=> {navigate('/login')})
+        }}>Sign Out</button></Link> 
     </div>
     <div className="dropdown dropdown-end">
-      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-        <div className="w-10 rounded-full">
-          <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-        </div>
-      </div>
+      
       <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
         <li>
           <a className="justify-between">
@@ -34,9 +33,7 @@ const NavBar = () => {
           </a>
         </li>
         
-        <li className='text-center cursor-pointer' onClick={()=>{
-          doSignOut().then(()=> {navigate('/login')})
-        }}>Log Out</li>
+        <li className='text-center cursor-pointer' >Log Out</li>
       </ul>
     </div>
   </div>

@@ -47,11 +47,11 @@ getMovieDetail()
 },[id])
 
   return (
-    <div>
+    <div className='overflow-hidden'>
     <NavBar></NavBar>
       <FullPage movieDetail={movieDetail} id={id}></FullPage>
       <TopCasts id={id}></TopCasts>
-      <Feed type="similar" id={id}></Feed>
+      <Feed type="similar" id={id} query=""></Feed>
       <Footer></Footer>
     </div>
   )
