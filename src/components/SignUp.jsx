@@ -6,6 +6,7 @@ import { useAuth } from './context/authContext';
 import { doCreateUserWithEmailAndPassword } from '../../firebase/auth';
 import { FcGoogle } from "react-icons/fc";
 import { Navigate, Link, useNavigate } from 'react-router-dom';
+import hero22 from '../assets/hero22.png'
 
 const SignUp = () => {
 
@@ -45,9 +46,9 @@ useEffect(() => {
         <div className='xl:flex h-screen' >
              <div className='relative '>
             <div className='absolute inset-0 xl:bg-gradient-to-l bg-gradient-to-t from-black to-transparent'></div>
-            <img src={torture} alt="torture-fremd" className='h-full w-full object-cover' />
+            <img src={hero22} alt="torture-fremd" className='h-full w-full object-cover' />
         </div>
-            <form onSubmit={onSubmit} className='text-white flex justify-center items-center flex-col xl:w-1/3'>
+            <form onSubmit={onSubmit} className='text-white flex justify-center items-center flex-col xl:w-2/3'>
                 <label className='my-4 text-5xl relative bottom-20 font-playwright'>Sign Up</label>
                 <label className="input input-bordered flex items-center gap-2 my-2">
 
