@@ -47,13 +47,11 @@ const Card = ({ movieData }) => {
 
                 <div className='flex justify-between items-center w-full'>
     <Link to={`/more-detail/${movieData.id}`} className='flex-1'>
-        <h1 className='xl:text-4xl text-xl font-bold hover:underline truncate'>{movieData.title}</h1>
+        <h1 className='xl:text-4xl text-xl font-bold hover:underline'>{movieData.title}</h1>
     </Link>
-    <ImCross onClick={() => removeFromWatchlist(movieData.id)} 
-        className='flex-shrink-0 cursor-pointer relative xl:mx-34 xl:h-12 xl:w-12 mx-8 h-5 w-5'
-    />
+   
 </div>
-                    <div className='flex text-sm space-x-3 my-4'>
+                    <div className='xl:flex text-sm xl:space-x-3 my-4'>
                         <h1>{formattedDate}</h1>
                         <h1>{hours}h {minutes}m</h1>
 
@@ -63,7 +61,11 @@ const Card = ({ movieData }) => {
                         <p className='mx-2 text-white '>{movieData.vote_average}</p>
                     </div>
 
-                   
+                    <button
+                     onClick={() => removeFromWatchlist(movieData.id)} 
+        className='btn btn-outline btn-warning cursor-pointer  xl:mx-34 mx-3 my-4 '
+    >Already Done!
+    </button>
 
                 </div>
                 
