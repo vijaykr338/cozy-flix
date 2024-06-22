@@ -65,7 +65,7 @@ const SignIn = () => {
                 <p className='text-sm'>The password must be over 6 characters</p>
                 <button className='btn my-7 bg-white text-black rounded-lg hover:text-white'>Sign in</button>
             
-            <button className='btn flex border-2 border-white rounded-full text-lg' onClick={onGoogleSignIn}><FcGoogle className=''/>Continue with Google</button>
+                <button className='btn flex border-2 border-white rounded-full text-lg'><Link to="/main">Continue without Account</Link></button>
 
             <Link className='my-4' to={'/'}> <p>Don't Have An Account?</p> </Link>
 

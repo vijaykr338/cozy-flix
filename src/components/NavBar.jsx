@@ -10,31 +10,24 @@ const NavBar = () => {
 
   return (
     <div className='font-playwright'>
-      <div className="navbar bg-black bg-opacity-50">
+      <div className="navbar bg-black bg-opacity-50 ">
   <div className="flex-1">
 
-    <Link to="/" className="btn btn-ghost xl:text-xl">Cozy Flix</Link>
+    <Link to="/main" className="btn btn-ghost xl:text-xl text-sm">Cozy Flix</Link>
   </div>
   <div className="flex-none gap-2">
     <div className="space-x-3">
         
      
-    <Link to="/watchlist"><button className='btn'>Watchlist</button></Link> 
-    <Link to="/watchlist"><button className='btn' onClick={()=>{
+    <Link to="/watchlist"><button className='bg-black xl:btn px-2 py-2 text-sm'>Watchlist</button></Link> 
+    <Link to="/watchlist"><button className='bg-black xl:btn px-2 py-2 text-sm' onClick={()=>{
           doSignOut().then(()=> {navigate('/login')})
         }}>Sign Out</button></Link> 
     </div>
     <div className="dropdown dropdown-end">
       
-      <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-        <li>
-          <a className="justify-between">
-            Profile
-          </a>
-        </li>
+     
         
-        <li className='text-center cursor-pointer' >Log Out</li>
-      </ul>
     </div>
   </div>
 </div>

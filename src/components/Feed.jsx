@@ -13,11 +13,16 @@ const Feed = ({ type, id, query }) => {
   const [title, setTitle] = useState("");
   const [watchList, setWatchList] = useContext(WatchListContext)
   const [searching, setSearching] = useState(false)
+  const [clickedHearts, setClickedHearts] = useState([]);
 
   const addToWatchList = (id) => {
-    // this is how you append to an array
     setWatchList((old) => [...old, id]);
-  }
+    // Toggle the clicked state for the heart icon
+    setClickedHearts((oldClicked) =>
+      oldClicked.includes(id) ? oldClicked.filter((movieId) => movieId !== id) : [...oldClicked, id]
+    );
+  };
+
 
     useEffect(()=>{
        if(query !== "" ){
@@ -107,8 +112,14 @@ const Feed = ({ type, id, query }) => {
                 }
                 return (
                   <div className='w-28 xl:w-72' key={movie.id}>
-                    <button onClick={() => addToWatchList(movie.id)}>
-                      <FaHeart className='text-red-500 h-11 w-auto relative top-12 z-10 hover:h-15' /></button>
+                   <FaHeart
+            onClick={() => addToWatchList(movie.id)}
+            style={{
+              color: clickedHearts.includes(movie.id) ? 'red' : 'grey',
+              cursor: 'pointer',
+            }}
+            className='xl:h-10 xl:w-10 h-5 w-5 relative xl:top-9 top-5 z-10'
+          />
                     <li className=''>
 
                       <Link to={`/more-detail/${movie.id}`}>
