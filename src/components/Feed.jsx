@@ -93,7 +93,7 @@ const Feed = ({ type, id, query }) => {
       {
         !searching && <div className='my-10 mx-5 font-space'>
           <h1 className='text-white text-3xl my-6'>{title}</h1>
-          <div className='list-none flex flex-wrap justify-center gap-x-9 xl:gap-x-24'>
+          <div className='list-none flex flex-wrap justify-center gap-x-14 xl:gap-x-24'>
             {
               movieData.map((movie) => {
                 const date = new Date(movie.release_date)
@@ -111,7 +111,7 @@ const Feed = ({ type, id, query }) => {
                   return 'red';
                 }
                 return (
-                  <div className='w-28 xl:w-72' key={movie.id}>
+                  <div className='w-36 xl:w-72' key={movie.id}>
                    <FaHeart
             onClick={() => addToWatchList(movie.id)}
             style={{
