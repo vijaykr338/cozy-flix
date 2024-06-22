@@ -111,7 +111,7 @@ const Feed = ({ type, id, query }) => {
                   return 'red';
                 }
                 return (
-                  <div className='w-36 xl:w-72' key={movie.id}>
+                  <div className='w-32 xl:w-72' key={movie.id}>
                    <FaHeart
             onClick={() => addToWatchList(movie.id)}
             style={{
